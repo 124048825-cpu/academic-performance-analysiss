@@ -1,3 +1,4 @@
+# Revisado por Lior - practica Big Data
 """
 Proyecto 1 - Análisis del rendimiento académico
 Dataset: Students Performance in Exams (Kaggle)
