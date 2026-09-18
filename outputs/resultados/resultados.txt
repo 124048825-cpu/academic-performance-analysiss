@@ -1,0 +1,183 @@
+
+======================================================================
+1. CARGA DEL DATASET
+======================================================================
+Dataset cargado desde: /home/claude/academic-performance-analysis/data/students_performance.csv
+
+======================================================================
+2. EXPLORACIÓN INICIAL
+======================================================================
+Número de registros: 1000
+Número de columnas: 8
+
+Nombre de las variables:
+ - gender
+ - race/ethnicity
+ - parental level of education
+ - lunch
+ - test preparation course
+ - math score
+ - reading score
+ - writing score
+
+Tipos de datos:
+gender                           str
+race/ethnicity                   str
+parental level of education      str
+lunch                            str
+test preparation course          str
+math score                     int64
+reading score                  int64
+writing score                  int64
+
+Valores faltantes por columna:
+gender                         0
+race/ethnicity                 0
+parental level of education    0
+lunch                          0
+test preparation course        0
+math score                     0
+reading score                  0
+writing score                  0
+
+Registros duplicados: 0
+
+Estadísticas descriptivas (variables numéricas):
+       math score  reading score  writing score
+count  1000.00000    1000.000000    1000.000000
+mean     66.08900      69.169000      68.054000
+std      15.16308      14.600192      15.195657
+min       0.00000      17.000000      10.000000
+25%      57.00000      59.000000      57.750000
+50%      66.00000      70.000000      69.000000
+75%      77.00000      79.000000      79.000000
+max     100.00000     100.000000     100.000000
+
+======================================================================
+3. LIMPIEZA Y PREPROCESAMIENTO
+======================================================================
+Se renombraron las columnas a formato snake_case (sin espacios ni '/').
+No se encontraron valores faltantes: no fue necesario imputar nada.
+No se encontraron registros duplicados.
+
+======================================================================
+4. VARIABLE average_score
+======================================================================
+Se creó la variable 'average_score' como el promedio de math_score, reading_score y writing_score.
+count    1000.000000
+mean       67.770580
+std        14.257311
+min         9.000000
+25%        58.330000
+50%        68.330000
+75%        77.670000
+max       100.000000
+
+======================================================================
+5. CLASIFICACIÓN DEL RENDIMIENTO ACADÉMICO
+======================================================================
+Criterios utilizados para clasificar 'average_score' en tres categorías:
+  - Bajo:  average_score < 60
+  - Medio: 60 <= average_score < 80
+  - Alto:  average_score >= 80
+
+Justificación: se utiliza 60 como umbral típico de aprobación/desempeño mínimo aceptable y 80 como umbral de desempeño sobresaliente, en línea con escalas de calificación de 0 a 100 usadas habitualmente en contextos educativos.
+
+Distribución de estudiantes por categoría de rendimiento:
+performance_level
+Medio    517
+Bajo     285
+Alto     198
+
+======================================================================
+6. ANÁLISIS
+======================================================================
+
+--- Análisis 1: ¿Cuál de las tres áreas tiene el promedio más alto? ---
+Promedio en math_score: 66.09
+Promedio en reading_score: 69.17
+Promedio en writing_score: 68.05
+El área con el promedio más alto es: reading_score
+
+--- Análisis 2: ¿Los estudiantes que realizaron el curso de preparación presentan mejores resultados? ---
+test_preparation
+completed    72.669469
+none         65.038801
+Diferencia (completed - none): 7.63 puntos
+
+--- Análisis 3: ¿Existen diferencias en el rendimiento según el nivel educativo de los padres? ---
+parental_education
+master's degree       73.598644
+bachelor's degree     71.923983
+associate's degree    69.568964
+some college          68.476106
+some high school      65.107654
+high school           63.097194
+
+--- Análisis 4: ¿Qué porcentaje de estudiantes alcanza cada categoría de rendimiento? ---
+performance_level
+Medio    51.7
+Bajo     28.5
+Alto     19.8
+
+--- Análisis 5 (adicional): ¿Qué grupos (race/ethnicity) presentan los promedios más altos y más bajos? ---
+race_ethnicity
+group E    72.752000
+group D    69.179389
+group C    67.131567
+group B    65.468579
+group A    62.992135
+Grupo con promedio más alto: group E (72.75)
+Grupo con promedio más bajo: group A (62.99)
+
+--- Análisis 6 (adicional): ¿Existen diferencias de rendimiento entre géneros por área? ---
+        math_score  reading_score  writing_score
+gender                                          
+female   63.633205      72.608108      72.467181
+male     68.728216      65.473029      63.311203
+
+======================================================================
+7. VISUALIZACIONES
+======================================================================
+Guardada: /home/claude/academic-performance-analysis/outputs/resultados/01_histograma_average_score.png
+Guardada: /home/claude/academic-performance-analysis/outputs/resultados/02_promedio_por_test_preparation.png
+Guardada: /home/claude/academic-performance-analysis/outputs/resultados/03_promedio_por_parental_education.png
+Guardada: /home/claude/academic-performance-analysis/outputs/resultados/04_boxplot_areas.png
+Guardada: /home/claude/academic-performance-analysis/outputs/resultados/05_niveles_de_rendimiento.png
+
+======================================================================
+8. CONCLUSIONES
+======================================================================
+
+1. El área con el promedio más alto es 'reading_score' (69.17
+   puntos), mientras que las otras dos áreas presentan promedios muy
+   cercanos entre sí, lo que sugiere que el rendimiento de los estudiantes
+   es relativamente consistente entre materias.
+
+2. Los estudiantes que completaron el curso de preparación ('completed')
+   obtienen en promedio 7.63 puntos más que quienes no lo
+   tomaron ('none'). Esto indica una asociación positiva entre haber tomado
+   el curso de preparación y un mejor desempeño académico.
+
+3. El nivel educativo de los padres sí está relacionado con el rendimiento:
+   el grupo con promedios más altos es 'master's degree'
+   (73.60) y el más bajo es 'high school'
+   (63.10), lo que sugiere que un mayor nivel educativo
+   de los padres se asocia con mejores resultados de los estudiantes.
+
+4. Según la clasificación de rendimiento definida (Bajo < 60, Medio 60-80,
+   Alto >= 80), el 51.70% de los
+   estudiantes se ubica en la categoría 'Medio', el
+   19.80% en 'Alto' y el
+   28.50% en 'Bajo'.
+
+5. El grupo étnico 'group E' presenta el promedio más alto
+   y 'group A' el más bajo, lo que muestra diferencias de
+   rendimiento entre grupos que podrían estar relacionadas con factores
+   socioeconómicos u otras variables no incluidas en el dataset.
+
+En conjunto, los resultados muestran que factores externos como el curso de
+preparación y el entorno familiar (nivel educativo de los padres) están
+asociados con el rendimiento académico, mientras que el desempeño entre las
+tres áreas evaluadas (matemáticas, lectura y escritura) es bastante
+homogéneo.
