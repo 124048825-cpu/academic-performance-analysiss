@@ -125,3 +125,5 @@ en `outputs/resultados/`:
 
 El reporte completo con todos los valores numéricos se encuentra en
 `outputs/resultados/resultados.txt` tras ejecutar el script.
+
+## Autor Proyecto realizado por Lior - 124048825
